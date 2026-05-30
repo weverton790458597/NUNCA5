@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Minhas Redes</title>
+    <title>Clipadas WR</title>
     <style>
         /* ==========================================================================
-           1. VARIÁVEIS DE DESIGN (Altere as cores e estilos principais aqui)
+           1. VARIÁVEIS DE DESIGN
            ========================================================================== */
         :root {
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #020617 100%);
@@ -20,13 +20,13 @@
         }
 
         /* ==========================================================================
-           2. CONFIGURAÇÕES RESET & BASE (Foco 100% Mobile)
+           2. CONFIGURAÇÕES RESET & BASE (Mobile-First)
            ========================================================================== */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-tap-highlight-color: transparent; /* Remove o flash azul ao clicar no mobile */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -41,7 +41,6 @@
             padding: 24px 16px;
         }
 
-        /* Container que simula e trava a largura de um app de celular */
         .app-container {
             width: 100%;
             max-width: 425px;
@@ -51,7 +50,7 @@
         }
 
         /* ==========================================================================
-           3. HEADER (Foto, Nome e Bio)
+           3. HEADER (Marca & Imagem 1.png)
            ========================================================================== */
         .profile-header {
             text-align: center;
@@ -75,7 +74,6 @@
             box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        /* Selo verificado opcional para dar um ar premium */
         .verified-badge {
             position: absolute;
             bottom: 2px;
@@ -110,13 +108,13 @@
         }
 
         /* ==========================================================================
-           4. LINKS & BOTÕES (A Zona do Polegar)
+           4. LINKS & BOTÕES (Com Ícones SVG Integrados)
            ========================================================================== */
         .links-container {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 14px; /* Espaçamento perfeito entre botões no mobile */
+            gap: 14px;
             margin-bottom: 40px;
         }
 
@@ -131,23 +129,29 @@
             border-radius: 16px;
             text-decoration: none;
             color: var(--text-primary);
-            font-size: 15px;
-            font-weight: 600;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             transition: transform 0.1s ease, border-color 0.2s ease, background-color 0.2s ease;
             
-            /* Estado inicial para a animação do JS */
             opacity: 0;
             transform: translateY(20px);
         }
 
-        /* Ícones internos dos botões */
+        /* Estilização dos blocos de SVG esquerdo */
         .link-icon-left {
-            font-size: 20px;
+            width: 24px;
+            height: 24px;
             margin-right: 14px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .link-icon-left svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
         }
 
         .link-content {
@@ -168,14 +172,29 @@
             margin-top: 2px;
         }
 
+        /* Seta SVG Direita */
         .link-arrow {
-            font-size: 14px;
+            width: 16px;
+            height: 16px;
             color: var(--text-secondary);
             opacity: 0.6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: transform 0.2s ease;
         }
 
-        /* Destaque para o link principal (Efeito Pulsante Sutil) */
+        .link-arrow svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Link Destaque (Featured) */
         .link-item.featured {
             border-color: rgba(56, 189, 248, 0.4);
             box-shadow: 0 4px 20px rgba(56, 189, 248, 0.08);
@@ -186,7 +205,6 @@
             color: var(--accent-color);
         }
 
-        /* Efeito de clique ativo (Muito importante para Mobile UI/UX) */
         .link-item:active {
             transform: scale(0.98) !important;
             background: rgba(56, 189, 248, 0.05);
@@ -194,7 +212,7 @@
         }
 
         /* ==========================================================================
-           5. FOOTER & REDES SOCIAIS DIRETAS
+           5. FOOTER COM ICONES REDES SOCIAIS EM SVG
            ========================================================================== */
         .social-footer {
             margin-top: auto;
@@ -211,10 +229,16 @@
 
         .social-icon-btn {
             color: var(--text-secondary);
-            font-size: 22px;
-            text-decoration: none;
-            transition: color 0.2s ease, transform 0.1s ease;
+            width: 24px;
+            height: 24px;
             display: inline-block;
+            transition: color 0.2s ease, transform 0.1s ease;
+        }
+
+        .social-icon-btn svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
         }
 
         .social-icon-btn:active {
@@ -237,78 +261,101 @@
         <!-- HEADER DO PERFIL -->
         <header class="profile-header">
             <div class="avatar-wrapper">
-                <!-- Substitua pelo caminho da sua imagem ou use um placeholder inicialmente -->
-                <img src="1.png" alt="Foto de Perfil" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80'">
+                <!-- Direcionado para buscar o arquivo 1.png local -->
+                <img src="1.png" alt="clipadas WR" class="avatar">
                 <div class="verified-badge">✓</div>
             </div>
-            <h1 class="profile-name">Seu Nome / Marca</h1>
-            <p class="profile-bio">Insira uma descrição curta, direta e objetiva sobre o seu trabalho ou o seu canal principal aqui.</p>
+            <h1 class="profile-name">Clipadas WR</h1>
+            <p class="profile-bio">Nossas redes e serviços</p>
         </header>
 
-        <!-- CONTAINER DE LINKS (ZONA DO POLEGAR) -->
+        <!-- CONTAINER DE LINKS -->
         <main class="links-container">
+
+  <!-- Link 3 - Direcionamento para a página interna de Cursos (SVG Oficial de Graduação/Educação) -->
+            <a href="cursos/" class="link-item featured" data-link-id="pagina_cursos">
+                <span class="link-icon-left">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L1 7l11 5 9-4.09V17h2V7L12 2zM3.6 7L12 3.18 20.4 7 12 10.82 3.6 7zM5 14.33V18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-3.67l-7 3.18-7-3.18z"/></svg>
+                </span>
+                <div class="link-content">
+                    <span class="link-title">Aprenda com a Gente</span>
+                    <span class="link-subtitle">Conheça nossos métodos e treinamentos</span>
+                </div>
+                <div class="link-arrow">
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+            </a>
+
             
-            <!-- Link 1 (Exemplo com Destaque / Featured) -->
-            <a href="https://wa.me/seu-numero" class="link-item featured" target="_blank" data-link-id="whatsapp_principal">
-                <span class="link-icon-left">💬</span>
+            <!-- Link 1 - WhatsApp (SVG Oficial) -->
+            <a href="https://wa.me/5598981460747" class="link-item" target="_blank" data-link-id="whatsapp_principal">
+                <span class="link-icon-left">
+                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.528 1.975 14.063.953 11.453.953c-5.437 0-9.859 4.374-9.863 9.8.001 2.142.593 4.224 1.713 6.043l-.988 3.598 3.733-.966zm11.367-7.112c-.29-.145-1.716-.838-1.982-.934-.265-.096-.458-.145-.65.145-.193.29-.747.934-.916 1.129-.169.193-.338.217-.627.072-2.91-1.436-4.646-3.8-5.36-5.01-.19-.324-.02-.5-.115-.654-.086-.14-.193-.324-.29-.44-.096-.115-.129-.193-.193-.325-.065-.13-.033-.242.016-.339.049-.097.458-.934.52-.15.063-.217.115-.434.053-.564-.062-.13-.458-1.129-.626-1.543-.165-.4-.347-.346-.477-.353l-.41-.008c-.141 0-.368.053-.56.261-.194.208-.74.723-.74 1.761s.765 2.04 1.072 2.446c.307.406 2.23 3.364 5.358 4.69.744.315 1.325.504 1.779.646.749.236 1.432.203 1.972.123.602-.09 1.716-.693 1.956-1.363.24-.67.24-1.243.168-1.364-.071-.12-.264-.193-.553-.339z"/></svg>
+                </span>
                 <div class="link-content">
                     <span class="link-title">Fale Comigo no WhatsApp</span>
-                    <span class="link-subtitle">Atendimento imediato e suporte</span>
+                    <span class="link-subtitle">Parcerias e contatos comerciais</span>
                 </div>
-                <span class="link-arrow">➔</span>
+                <div class="link-arrow">
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
             </a>
 
-            <!-- Link 2 -->
-            <a href="https://youtube.com/seu-canal" class="link-item" target="_blank" data-link-id="youtube_principal">
-                <span class="link-icon-left">📺</span>
+            <!-- Link 2 - YouTube (SVG Oficial) -->
+            <a href="https://www.youtube.com/@CortesdoCoringa_BR" class="link-item" target="_blank" data-link-id="youtube_principal">
+                <span class="link-icon-left">
+                    <svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.516 0-9.387.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.387.507 9.387.507s7.517 0 9.387-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </span>
                 <div class="link-content">
-                    <span class="link-title">Meu Canal no YouTube</span>
-                    <span class="link-subtitle">Vídeos novos toda semana</span>
+                    <span class="link-title">Canal Principal no YouTube</span>
+                    <span class="link-subtitle">Assista aos melhores cortes compilados</span>
                 </div>
-                <span class="link-arrow">➔</span>
+                <div class="link-arrow">
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
             </a>
 
-            <!-- Link 3 -->
-            <a href="https://tiktok.com/@seu-perfil" class="link-item" target="_blank" data-link-id="tiktok_shop">
-                <span class="link-icon-left">🛍️</span>
+            <!-- Link 4 - Instagram (SVG Oficial) -->
+            <a href="https://www.instagram.com/cortesdocoringa_br/" class="link-item" target="_blank" data-link-id="instagram_perfil">
+                <span class="link-icon-left">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                </span>
                 <div class="link-content">
-                    <span class="link-title">Produtos Recomendados</span>
-                    <span class="link-subtitle">Confira nossa loja no TikTok Shop</span>
+                    <span class="link-title">Siga no Instagram</span>
+                    <span class="link-subtitle">Novidades diárias e avisos nos stories</span>
                 </div>
-                <span class="link-arrow">➔</span>
-            </a>
-
-            <!-- Link 4 -->
-            <a href="https://instagram.com/seu-perfil" class="link-item" target="_blank" data-link-id="instagram_perfil">
-                <span class="link-icon-left">📸</span>
-                <div class="link-content">
-                    <span class="link-title">Acompanhe no Instagram</span>
-                    <span class="link-subtitle">Bastidores e dia a dia nos Stories</span>
+                <div class="link-arrow">
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
-                <span class="link-arrow">➔</span>
             </a>
 
         </main>
 
-        <!-- FOOTER COM ÍCONES RÁPIDOS -->
+        <!-- FOOTER COM ÍCONES EM SVG -->
         <footer class="social-footer">
             <div class="social-icons">
-                <a href="#" class="social-icon-btn" data-link-id="footer_insta">📸</a>
-                <a href="#" class="social-icon-btn" data-link-id="footer_yt">📺</a>
-                <a href="#" class="social-icon-btn" data-link-id="footer_tt">🐦</a>
+                <a href="https://www.instagram.com/cortesdocoringa_br/" class="social-icon-btn" target="_blank" data-link-id="footer_insta">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                </a>
+                <a href="https://www.youtube.com/@CortesdoCoringa_BR" class="social-icon-btn" target="_blank" data-link-id="footer_yt">
+                    <svg viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.516 0-9.387.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.387.507 9.387.507s7.517 0 9.387-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@clipadas_wr" class="social-icon-btn" target="_blank" data-link-id="footer_tt">
+                    <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.05 1.62 4.2 1.07 1.21 2.58 2 4.17 2.23v3.88c-1.39-.07-2.74-.6-3.88-1.43-.68-.5-.18-.08-.66-.48V14.3c.02 3.11-1.34 6.13-3.83 7.97-2.6 1.93-6.11 2.4-9.13 1.22-3.14-1.21-5.38-4.29-5.61-7.65-.24-3.66 1.83-7.23 5.16-8.77 1.83-.85 3.89-1.03 5.83-.5V10.6c-1-.31-2.1-.21-3 .3-.99.56-1.57 1.63-1.51 2.76.04 1.51 1.25 2.77 2.76 2.82 1.6.05 2.97-1.15 3.02-2.75.02-2.3.01-4.6.01-6.9 0-2.27 0-4.54.01-6.81z"/></svg>
+                </a>
             </div>
-            <p class="copyright">© 2026 • TODOS OS DIREITOS RESERVADOS</p>
+            <p class="copyright">© 2026 • Clipadas WR • TODOS OS DIREITOS RESERVADOS</p>
         </footer>
 
     </div>
 
     <!-- ==========================================================================
-       6. JAVASCRIPT (Animações Fluídas & Tracking de Cliques)
+       6. JAVASCRIPT
        ========================================================================== */ -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
-            // 1. Animação Premium de Entrada dos Links (Efeito Cascata / Stagger)
+            // Animação Cascata (Stagger) nos Links
             const links = document.querySelectorAll('.link-item');
             
             links.forEach((link, index) => {
@@ -316,21 +363,17 @@
                     link.style.opacity = "1";
                     link.style.transform = "translateY(0)";
                     link.style.transition = "opacity 0.5s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-                }, index * 120); // 120ms de atraso entre cada botão para criar a cascata perfeita
+                }, index * 120);
             });
 
-            // 2. Sistema de Rastreamento (Analytics) Pronto para Integração
+            // Rastreamento de Cliques (Console)
             const trackableElements = document.querySelectorAll('[data-link-id]');
             
             trackableElements.forEach(element => {
                 element.addEventListener('click', (e) => {
                     const linkId = element.getAttribute('data-link-id');
                     const targetUrl = element.getAttribute('href');
-                    
-                    console.log(`[Analytics] Link clicado: ${linkId} -> Direcionando para: ${targetUrl}`);
-                    
-                    // Aqui futuramente você pode disparar a API do Google Analytics, Meta Pixel ou TikTok Pixel:
-                    // if (typeof fbq !== 'undefined') fbq('track', 'CustomClick', { id: linkId });
+                    console.log(`[Analytics] Click: ${linkId} -> ${targetUrl}`);
                 });
             });
         });
