@@ -2,37 +2,338 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Minhas Redes</title>
     <style>
-        /* Zera as margens padrão do navegador */
-        * {
+        /* ==========================================================================
+           1. VARIÁVEIS DE DESIGN (Altere as cores e estilos principais aqui)
+           ========================================================================== */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8; /* Azul Tech Premium */
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* ==========================================================================
+           2. CONFIGURAÇÕES RESET & BASE (Foco 100% Mobile)
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Remove o flash azul ao clicar no mobile */
         }
 
-        /* Centraliza o conteúdo na tela */
         body {
+            font-family: var(--font-family);
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f0f2f5;
-            font-family: Arial, sans-serif;
+            align-items: flex-start;
+            overflow-x: hidden;
+            padding: 24px 16px;
         }
 
-        /* Estilização do texto */
-        h1 {
-            color: #333;
-            font-size: 3rem;
+        /* Container que simula e trava a largura de um app de celular */
+        .app-container {
+            width: 100%;
+            max-width: 425px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ==========================================================================
+           3. HEADER (Foto, Nome e Bio)
+           ========================================================================== */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 32px;
+            width: 100%;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 16px auto;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* Selo verificado opcional para dar um ar premium */
+        .verified-badge {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            background: var(--accent-color);
+            color: #020617;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
             font-weight: bold;
+            border: 2px solid #0f172a;
+        }
+
+        .profile-name {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .profile-bio {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 85%;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           4. LINKS & BOTÕES (A Zona do Polegar)
+           ========================================================================== */
+        .links-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px; /* Espaçamento perfeito entre botões no mobile */
+            margin-bottom: 40px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.1s ease, border-color 0.2s ease, background-color 0.2s ease;
+            
+            /* Estado inicial para a animação do JS */
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Ícones internos dos botões */
+        .link-icon-left {
+            font-size: 20px;
+            margin-right: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .link-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .link-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .link-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .link-arrow {
+            font-size: 14px;
+            color: var(--text-secondary);
+            opacity: 0.6;
+            transition: transform 0.2s ease;
+        }
+
+        /* Destaque para o link principal (Efeito Pulsante Sutil) */
+        .link-item.featured {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.08);
+            background: linear-gradient(90deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.9) 100%);
+        }
+        
+        .link-item.featured .link-title {
+            color: var(--accent-color);
+        }
+
+        /* Efeito de clique ativo (Muito importante para Mobile UI/UX) */
+        .link-item:active {
+            transform: scale(0.98) !important;
+            background: rgba(56, 189, 248, 0.05);
+            border-color: var(--accent-color);
+        }
+
+        /* ==========================================================================
+           5. FOOTER & REDES SOCIAIS DIRETAS
+           ========================================================================== */
+        .social-footer {
+            margin-top: auto;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .social-icon-btn {
+            color: var(--text-secondary);
+            font-size: 22px;
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.1s ease;
+            display: inline-block;
+        }
+
+        .social-icon-btn:active {
+            color: var(--accent-color);
+            transform: scale(0.9);
+        }
+
+        .copyright {
+            font-size: 11px;
+            color: var(--text-secondary);
+            opacity: 0.5;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Início</h1>
+    <div class="app-container">
+        
+        <!-- HEADER DO PERFIL -->
+        <header class="profile-header">
+            <div class="avatar-wrapper">
+                <!-- Substitua pelo caminho da sua imagem ou use um placeholder inicialmente -->
+                <img src="1.png" alt="Foto de Perfil" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80'">
+                <div class="verified-badge">✓</div>
+            </div>
+            <h1 class="profile-name">Seu Nome / Marca</h1>
+            <p class="profile-bio">Insira uma descrição curta, direta e objetiva sobre o seu trabalho ou o seu canal principal aqui.</p>
+        </header>
 
+        <!-- CONTAINER DE LINKS (ZONA DO POLEGAR) -->
+        <main class="links-container">
+            
+            <!-- Link 1 (Exemplo com Destaque / Featured) -->
+            <a href="https://wa.me/seu-numero" class="link-item featured" target="_blank" data-link-id="whatsapp_principal">
+                <span class="link-icon-left">💬</span>
+                <div class="link-content">
+                    <span class="link-title">Fale Comigo no WhatsApp</span>
+                    <span class="link-subtitle">Atendimento imediato e suporte</span>
+                </div>
+                <span class="link-arrow">➔</span>
+            </a>
+
+            <!-- Link 2 -->
+            <a href="https://youtube.com/seu-canal" class="link-item" target="_blank" data-link-id="youtube_principal">
+                <span class="link-icon-left">📺</span>
+                <div class="link-content">
+                    <span class="link-title">Meu Canal no YouTube</span>
+                    <span class="link-subtitle">Vídeos novos toda semana</span>
+                </div>
+                <span class="link-arrow">➔</span>
+            </a>
+
+            <!-- Link 3 -->
+            <a href="https://tiktok.com/@seu-perfil" class="link-item" target="_blank" data-link-id="tiktok_shop">
+                <span class="link-icon-left">🛍️</span>
+                <div class="link-content">
+                    <span class="link-title">Produtos Recomendados</span>
+                    <span class="link-subtitle">Confira nossa loja no TikTok Shop</span>
+                </div>
+                <span class="link-arrow">➔</span>
+            </a>
+
+            <!-- Link 4 -->
+            <a href="https://instagram.com/seu-perfil" class="link-item" target="_blank" data-link-id="instagram_perfil">
+                <span class="link-icon-left">📸</span>
+                <div class="link-content">
+                    <span class="link-title">Acompanhe no Instagram</span>
+                    <span class="link-subtitle">Bastidores e dia a dia nos Stories</span>
+                </div>
+                <span class="link-arrow">➔</span>
+            </a>
+
+        </main>
+
+        <!-- FOOTER COM ÍCONES RÁPIDOS -->
+        <footer class="social-footer">
+            <div class="social-icons">
+                <a href="#" class="social-icon-btn" data-link-id="footer_insta">📸</a>
+                <a href="#" class="social-icon-btn" data-link-id="footer_yt">📺</a>
+                <a href="#" class="social-icon-btn" data-link-id="footer_tt">🐦</a>
+            </div>
+            <p class="copyright">© 2026 • TODOS OS DIREITOS RESERVADOS</p>
+        </footer>
+
+    </div>
+
+    <!-- ==========================================================================
+       6. JAVASCRIPT (Animações Fluídas & Tracking de Cliques)
+       ========================================================================== */ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Animação Premium de Entrada dos Links (Efeito Cascata / Stagger)
+            const links = document.querySelectorAll('.link-item');
+            
+            links.forEach((link, index) => {
+                setTimeout(() => {
+                    link.style.opacity = "1";
+                    link.style.transform = "translateY(0)";
+                    link.style.transition = "opacity 0.5s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+                }, index * 120); // 120ms de atraso entre cada botão para criar a cascata perfeita
+            });
+
+            // 2. Sistema de Rastreamento (Analytics) Pronto para Integração
+            const trackableElements = document.querySelectorAll('[data-link-id]');
+            
+            trackableElements.forEach(element => {
+                element.addEventListener('click', (e) => {
+                    const linkId = element.getAttribute('data-link-id');
+                    const targetUrl = element.getAttribute('href');
+                    
+                    console.log(`[Analytics] Link clicado: ${linkId} -> Direcionando para: ${targetUrl}`);
+                    
+                    // Aqui futuramente você pode disparar a API do Google Analytics, Meta Pixel ou TikTok Pixel:
+                    // if (typeof fbq !== 'undefined') fbq('track', 'CustomClick', { id: linkId });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
