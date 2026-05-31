@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mentoria Dominando o TikTok Shop — Fátima Maria</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <!-- FAVICON CORRIGIDO (Removida a linha data:,) -->
-    <link rel="icon" type="image/png" href="../logo.png">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -695,16 +693,305 @@
   }
 
   /* ── RESPONSIVE ─────────────────────── */
-  @media (max-width: 600px) {
-    section { padding: 4rem 1.25rem; }
-    .hero { padding: 5rem 1.25rem 4rem; }
-    .offer-box { padding: 2rem 1.25rem; }
-    .offer-price { font-size: 2.8rem; }
-    h1 { letter-spacing: -0.02em; }
+/* ===========================
+   MOBILE FIRST OVERRIDE
+   COLE NO FINAL DO CSS
+=========================== */
+
+html{
+  font-size:16px;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+section{
+  padding:56px 18px;
+}
+
+.container{
+  width:100%;
+  max-width:100%;
+}
+
+.topbar{
+  font-size:11px;
+  line-height:1.4;
+  padding:10px;
+}
+
+.hero{
+  min-height:auto;
+  padding:90px 18px 50px;
+}
+
+h1{
+  font-size:2.2rem;
+  line-height:1.05;
+  letter-spacing:-0.03em;
+}
+
+h2{
+  font-size:1.9rem;
+  line-height:1.1;
+}
+
+.hero-sub{
+  font-size:15px;
+  line-height:1.7;
+}
+
+.badge-pill{
+  font-size:11px;
+}
+
+.hero-stats{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  width:100%;
+  margin-top:24px;
+}
+
+.hstat{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  width:100%;
+}
+
+.hstat-num{
+  font-size:1.8rem;
+}
+
+.hero-cta{
+  width:100%;
+}
+
+.btn-primary{
+  width:100%;
+  text-align:center;
+  padding:20px;
+}
+
+.hero img{
+  width:100%;
+  border-radius:14px;
+  margin-top:24px;
+}
+
+.dor-list,
+.proof-grid,
+.obj-grid,
+.test-grid{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.dor-item,
+.proof-card,
+.obj-card,
+.test-card{
+  padding:18px;
+}
+
+.module-item{
+  gap:14px;
+}
+
+.mod-title{
+  font-size:14px;
+}
+
+.mod-desc{
+  font-size:13px;
+}
+
+.offer-box{
+  padding:24px 18px;
+}
+
+.offer-price{
+  font-size:2.8rem;
+}
+
+.offer-includes li{
+  font-size:13px;
+}
+
+.urgency-bar{
+  padding:14px;
+}
+
+.urgency-count{
+  font-size:20px;
+}
+
+summary{
+  font-size:14px;
+  line-height:1.5;
+}
+
+details p{
+  font-size:14px;
+}
+
+.footer-cta{
+  padding:60px 18px 90px;
+}
+
+footer{
+  padding-bottom:90px;
+}
+
+/* ===========================
+   MENTOR MOBILE
+=========================== */
+
+.mentor-mobile{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* ===========================
+   STICKY CTA MOBILE
+=========================== */
+
+.sticky-buy{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:9999;
+  padding:12px;
+  background:#0A0A0B;
+  border-top:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+}
+
+.sticky-buy a{
+  display:block;
+  width:100%;
+  text-align:center;
+  text-decoration:none;
+  background:var(--red);
+  color:#fff;
+  font-family:var(--font-head);
+  font-weight:800;
+  padding:18px;
+  border-radius:10px;
+}
+
+/* ===========================
+   DESKTOP
+=========================== */
+
+@media (min-width:768px){
+
+  section{
+    padding:96px 24px;
   }
+
+  .container{
+    max-width:860px;
+  }
+
+  .hero{
+    min-height:100vh;
+    padding:96px 24px;
+  }
+
+  h1{
+    font-size:4.2rem;
+  }
+
+  h2{
+    font-size:2.8rem;
+  }
+
+  .hero-stats{
+    flex-direction:row;
+    justify-content:center;
+  }
+
+  .hstat{
+    width:auto;
+    background:transparent;
+    border:none;
+    padding:0;
+  }
+
+  .proof-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .obj-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .test-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .dor-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .mentor-mobile{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+  }
+
+  .btn-primary{
+    width:auto;
+  }
+
+  .offer-box{
+    padding:48px 40px;
+  }
+
+  .offer-price{
+    font-size:3.5rem;
+  }
+
+  .sticky-buy{
+    display:none;
+  }
+
+  footer{
+    padding-bottom:32px;
+  }
+
+}
+
+
+@media (max-width:768px){
+
+  [style*="grid-template-columns: 1fr 1fr"]{
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+}
+
 </style>
 </head>
 <body>
+
+<div class="sticky-buy">
+  <a href="https://go.hotmart.com/E106060795C">
+    🔥 Garantir minha vaga agora
+  </a>
+</div>
 
 <!-- TOPBAR -->
 <div class="topbar">
