@@ -141,81 +141,221 @@
             transform: translateY(20px);
         }
 
-        /* Estilização dos blocos de SVG esquerdo */
-        .link-icon-left {
-            width: 24px;
-            height: 24px;
-            margin-right: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
+/* --- CARD PREMIUM COM BANNER PANORÂMICO --- */
+.link-item.featured-banner {
+    position: relative;
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    border: 2px solid #00f2fe;
+    box-shadow: 0 8px 24px rgba(0, 242, 254, 0.15);
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    margin-bottom: 16px;
+}
 
-        .link-icon-left svg {
-            width: 100%;
-            height: 100%;
-            fill: currentColor;
-        }
+.link-item.featured-banner .banner-container {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+}
 
-        .link-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+.link-item.featured-banner .banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+}
 
-        .link-title {
-            font-size: 15px;
-            font-weight: 600;
-        }
+.link-item.featured-banner .banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(15, 23, 42, 0.95) 20%,
+        rgba(15, 23, 42, 0.4) 100%
+    );
+    transition: background .3s ease;
+}
 
-        .link-subtitle {
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 400;
-            margin-top: 2px;
-        }
+.link-item.featured-banner .banner-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    box-sizing: border-box;
+    z-index: 2;
+}
 
-        /* Seta SVG Direita */
-        .link-arrow {
-            width: 16px;
-            height: 16px;
-            color: var(--text-secondary);
-            opacity: 0.6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
-        }
+.link-item.featured-banner .banner-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-right: 12px;
+}
 
-        .link-arrow svg {
-            width: 100%;
-            height: 100%;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
+.link-item.featured-banner .link-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+}
 
-        /* Link Destaque (Featured) */
-        .link-item.featured {
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.08);
-            background: linear-gradient(90deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.9) 100%);
-        }
-        
-        .link-item.featured .link-title {
-            color: var(--accent-color);
-        }
+.link-item.featured-banner .link-subtitle {
+    font-size: 12.5px;
+    font-weight: 500;
+    margin-top: 4px;
+    color: #00f2fe;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+}
 
-        .link-item:active {
-            transform: scale(0.98) !important;
-            background: rgba(56, 189, 248, 0.05);
-            border-color: var(--accent-color);
-        }
+.link-item.featured-banner .link-arrow {
+    width: 18px;
+    height: 18px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .3s ease, color .3s ease;
+}
 
-        /* ==========================================================================
+.link-item.featured-banner .link-arrow svg,
+.link-arrow svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.link-item.featured-banner:hover {
+    transform: translateY(-4px);
+    border-color: #fe2c55;
+    box-shadow: 0 12px 30px rgba(254, 44, 85, 0.3);
+}
+
+.link-item.featured-banner:hover .banner-img {
+    transform: scale(1.06);
+}
+
+.link-item.featured-banner:hover .link-arrow {
+    transform: translateX(5px);
+    color: #fe2c55;
+}
+
+.link-item.featured-banner:hover .link-subtitle {
+    color: #fff;
+}
+
+.link-item.featured-banner:active {
+    transform: scale(.98);
+}
+
+.link-icon-left {
+    width: 26px;
+    height: 26px;
+    margin-right: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.link-icon-left svg {
+    width: 100%;
+    height: 100%;
+    fill: #00f2fe;
+    filter: drop-shadow(0 0 8px rgba(0, 242, 254, .6));
+}
+
+.link-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.link-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+
+.link-subtitle {
+    font-size: 12.5px;
+    font-weight: 400;
+    margin-top: 3px;
+    color: rgba(255, 255, 255, .7);
+}
+
+.link-arrow {
+    width: 18px;
+    height: 18px;
+    color: #00f2fe;
+    opacity: .8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+
+.link-item.featured {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: 2px solid #00f2fe;
+    box-shadow:
+        0 0 20px rgba(0, 242, 254, .15),
+        inset 0 0 12px rgba(0, 242, 254, .05);
+    animation: pulseGlow 2.5s infinite ease-in-out;
+    transition: all .3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.link-item.featured .link-title {
+    background: linear-gradient(90deg, #fff, #00f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.link-item.featured:hover {
+    transform: translateY(-3px) scale(1.01);
+    border-color: #fe2c55;
+    box-shadow: 0 8px 25px rgba(254, 44, 85, .25);
+}
+
+.link-item.featured:hover .link-arrow {
+    transform: translateX(4px);
+    color: #fe2c55;
+}
+
+.link-item.featured:hover .link-icon-left svg {
+    fill: #fe2c55;
+    filter: drop-shadow(0 0 8px rgba(254, 44, 85, .8));
+}
+
+.link-item.featured:active {
+    transform: scale(.98) !important;
+    background: #0f172a;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(0, 242, 254, .15);
+    }
+
+    50% {
+        box-shadow:
+            0 0 25px rgba(0, 242, 254, .3),
+            inset 0 0 15px rgba(0, 242, 254, .1);
+    }
+} ==========================================================================
            5. FOOTER COM ICONES REDES SOCIAIS EM SVG
            ========================================================================== */
         .social-footer {
@@ -277,7 +417,27 @@
         <main class="links-container">
 
   <!-- Link 3 - Direcionamento para a página interna de Cursos (SVG Oficial de Graduação/Educação) -->
-            <a href="treinamentos/" class="link-item featured" data-link-id="pagina_cursos">
+<a href="tiktok_shop/" class="link-item featured-banner" data-link-id="pagina_cursos">
+    <div class="banner-container">
+        <img src="b.png" alt="Método TikTok Shop" class="banner-img">
+        <div class="banner-overlay"></div>
+    </div>
+    
+    <div class="banner-content">
+        <div class="banner-text">
+            <span class="link-title">Método TikTok Shop</span>
+            <span class="link-subtitle">Aprenda o passo a passo para faturar na plataforma</span>
+        </div>
+        <div class="link-arrow">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+    </div>
+</a>
+
+
+
+  <!-- Link 3 - Direcionamento para a página interna de Cursos (SVG Oficial de Graduação/Educação) -->
+            <a href="treinamentos/" class="link-item" data-link-id="pagina_cursos">
                 <span class="link-icon-left">
                     <svg viewBox="0 0 24 24"><path d="M12 2L1 7l11 5 9-4.09V17h2V7L12 2zM3.6 7L12 3.18 20.4 7 12 10.82 3.6 7zM5 14.33V18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-3.67l-7 3.18-7-3.18z"/></svg>
                 </span>
